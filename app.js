@@ -10,9 +10,11 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-//rotas públicas
 app.use(require('./middleware/auth.middleware'));
+
 app.use('/auth', require('./routes/auth.routes'));
+
+app.use('/products', require('./routes/product.routes'))
 
 app.listen(process.env.PORT, () => {
     console.log(`Server running on PORT: ${process.env.PORT}`)
