@@ -35,17 +35,16 @@ router.post("/signup", async (req, res) => {
       const { email, password } = req.body;
       const userFromDB = await User.findOne({email});
       if (!userFromDB) {
-        throw new Error('invalid username or password');
+        throw new Error('invalid email or password');
       }
       const verifiedHash = bcrypt.compareSync(password, userFromDB.passwordHash)
       if(!verifiedHash) {
-        throw new Error('invalid username or password');
+        throw new Error('invalid email or password');
       }
       
       const payload = {
         id: userFromDB._id,
-        name: userFromDB.name,
-        email,
+        name: userFromDB.email
       }
   
       const token = jwt.sign(payload, process.env.JWT_SECRET, {
