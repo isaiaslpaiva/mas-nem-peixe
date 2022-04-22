@@ -21,7 +21,7 @@ const productSchema = new Schema (
         },
          category: {
             type: String,
-            enum: "Food"||"Personal Hygiene"||"Cleaning"||"Alcoholic Beverages"||"Events"||"Makeup"||"Drink"||"Others",
+            enum: ["Food"||"Personal Hygiene"||"Cleaning"||"Alcoholic Beverages"||"Events"||"Makeup"||"Drink"||"Others"],
             required: true
         },
         source: {
@@ -34,7 +34,7 @@ const productSchema = new Schema (
         },
         vegan: {
             type: String,
-            enum: "Vegan" || "Not Vegan",
+            enum: ["Vegan" || "NotVegan"],
             required: true
         },
         comments: [],

@@ -44,7 +44,7 @@ router.post("/signup", async (req, res) => {
       
       const payload = {
         id: userFromDB._id,
-        name: userFromDB.email
+        email: userFromDB.email
       }
   
       const token = jwt.sign(payload, process.env.JWT_SECRET, {
