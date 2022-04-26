@@ -1,7 +1,6 @@
 const { Router } = require('express')
 
-const Comment = require('../models/Comment.model')
-const Product = require('../models/Product.model')
+const Comment = require('../models/Comment.models')
 
 const router = Router()
 
@@ -10,10 +9,6 @@ router.post('/:productId', async (req, res) => {
     const { id } = req.user
     try {
         const product = await Product.findById(productId)
-        if (product.userId == id) {
-            res.status(400).json({message: "User can't create a comment on own product"})
-            return
-        }
         const newComment = {...req.body, productId, userId: id}
         const commentFromDb = await Comment.create(newComment)
 
@@ -31,7 +26,7 @@ router.get('/:productId', async (req, res) => {
     try {
         const comments = await Comment.find({productId}).populate(
             "userId productId",
-            "username name"
+            "username nameOfProduct"
         )
         res.status(200).json(comments)
     } catch (error) {
@@ -72,7 +67,6 @@ router.put('/:commentId', async (req, res) => {
         res.status(500).json({message: "Error while trying to update comment", error})
     }
 })
-
 
 
 module.exports = router;

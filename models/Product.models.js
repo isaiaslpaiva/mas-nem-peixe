@@ -37,7 +37,7 @@ const productSchema = new Schema (
             enum: ["Vegan" || "NotVegan"],
             required: true
         },
-        comments: [],
+        comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}],
         userId:{
             type: Schema.Types.ObjectId,
             ref: "User"

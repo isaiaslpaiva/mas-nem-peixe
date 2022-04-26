@@ -16,6 +16,8 @@ app.use('/auth', require('./routes/auth.routes'));
 
 app.use('/products', require('./routes/product.routes'))
 
+app.use('/comments', require('./routes/comment.routes'))
+
 app.listen(process.env.PORT, () => {
     console.log(`Server running on PORT: ${process.env.PORT}`)
 })
