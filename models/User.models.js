@@ -13,11 +13,11 @@ const userSchema = new Schema (
         },
         gender: {
             type: String,
-            enum: "Masculine"||"Feminine"||"Another"
+            enum: ["Masculino", "Feminino", "Não-Binário"]
         },
         vegan: {
             type: String,
-            enum: "Yes"||"No"
+            enum: ["Sim", "Não"]
         },
         email: {
             type: String,

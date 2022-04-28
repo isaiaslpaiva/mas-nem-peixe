@@ -8,7 +8,6 @@ router.post('/:productId', async (req, res) => {
     const { productId } = req.params
     const { id } = req.user
     try {
-        const product = await Product.findById(productId)
         const newComment = {...req.body, productId, userId: id}
         const commentFromDb = await Comment.create(newComment)
 
