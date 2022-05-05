@@ -44,17 +44,18 @@ router.post("/signup", async (req, res) => {
       
       const payload = {
         id: userFromDB._id,
-        email: userFromDB.email
+        name: userFromDB.name,
+        email,
       }
   
       const token = jwt.sign(payload, process.env.JWT_SECRET, {
-        expiresIn: '1d'
+        expiresIn: '1day'
       });
   
       res.status(200).json({user: payload, token});
   
     } catch (error) {
-      res.status(500).json(error.message)
+      res.status(500).json({message: 'Error trrying to login', error: error.message});
     }
   })
   

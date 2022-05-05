@@ -5,10 +5,10 @@ const User = require('../models/User.models')
 
 const router = Router()
 
-router.get('/', async (req, res) => {
+router.get('/:userId', async (req, res) => {
     try {
         const userId = req.user.id;
-        const userFromDb = await User.findById(userId).select("name email image gender vegan")
+        const userFromDb = await User.findById(userId).select("name email image gender youAre")
         res.status(200).json(userFromDb)
     } catch (error) {
         res.status(500).json({error: error.message})

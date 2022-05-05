@@ -15,9 +15,9 @@ const userSchema = new Schema (
             type: String,
             enum: ["Masculino", "Feminino", "Não-Binário"]
         },
-        vegan: {
+        youAre: {
             type: String,
-            enum: ["Sim", "Não"]
+            enum: ["Vegan", "Vegetariano(a)", "Intolerante/Alérgico à alguns aliimentos", "Consome produtos animais"]
         },
         email: {
             type: String,

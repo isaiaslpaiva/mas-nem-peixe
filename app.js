@@ -11,12 +11,14 @@ app.use(express.json());
 app.use(cors());
 
 app.use('/auth', require('./routes/auth.routes'));
+app.use('/products', require('./routes/dbProduct.routes'));
 
 app.use(require('./middleware/auth.middleware'));
 
+app.use('/user', require('./routes/user.routes'));
 app.use('/products', require('./routes/product.routes'))
-
 app.use('/comments', require('./routes/comment.routes'))
+
 
 app.listen(process.env.PORT, () => {
     console.log(`Server running on PORT: ${process.env.PORT}`)
