@@ -17,14 +17,7 @@ router.get('/', async (req, res) => {
 router.get('/:productId', async (req, res) => {
     const { productId } = req.params
     try {
-        const product = await Product.findById(productId).populate({
-            path: "comments",
-            select: ["comment", "userId"],
-            populate: {
-                path: "userId",
-                select: "name"
-            }
-        })
+        const product = await Product.findById(productId)
         res.status(200).json(product)
     } catch (error) {
         res.status(500).json({ message: "Error while trying to get one product", error})

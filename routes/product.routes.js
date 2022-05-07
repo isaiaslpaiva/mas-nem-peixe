@@ -25,15 +25,4 @@ router.put('/:productId', async (req, res) => {
     }
 })
 
-router.delete('/:productId', async (req, res) => {
-    const { productId } = req.params
-    try {
-        await Product.findByIdAndDelete(productId)
-        await Comment.deleteMany({ productId })
-        res.status(204).json()
-    } catch (error) {
-        res.status(500).json({ message: "Error while trying to delete a product", error})
-    }
-})
-
 module.exports = router;
