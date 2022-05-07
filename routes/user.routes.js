@@ -5,10 +5,10 @@ const User = require('../models/User.models')
 
 const router = Router()
 
-router.get('/', async (req, res) => {
+router.get('/:userId', async (req, res) => {
     try {
         const userId = req.user.id;
-        const userFromDb = await User.findById(userId).select("name email image gender vegan")
+        const userFromDb = await User.findById(userId).select("name email image gender youAre")
         res.status(200).json(userFromDb)
     } catch (error) {
         res.status(500).json({error: error.message})
@@ -23,6 +23,15 @@ router.put('/image', uploadCloud.single('image'), async (req, res) => {
         res.status(200).json(updatedUser)
     } catch (error) {
         res.status(500).json({ error: error.message})
+    }
+})
+
+router.get('/', async (req, res) => {
+    try {
+        const user = await User.find()
+        res.status(200).json(user)
+    } catch (error) {
+        res.status(500).json({ message: "Error while trying to get all users", error})
     }
 })
 

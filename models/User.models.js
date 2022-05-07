@@ -13,11 +13,13 @@ const userSchema = new Schema (
         },
         gender: {
             type: String,
-            enum: ["Masculino", "Feminino", "Não-Binário"]
+            enum: ["Masculino", "Feminino", "Não-Binário"],
+            required: true,
         },
-        vegan: {
+        youAre: {
             type: String,
-            enum: ["Sim", "Não"]
+            required: true,
+            enum: ["Vegan", "Vegetariano(a)", "Intolerante/Alérgico à alguns alimentos", "Consome produtos animais"]
         },
         email: {
             type: String,

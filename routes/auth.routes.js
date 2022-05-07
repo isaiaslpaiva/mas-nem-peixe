@@ -7,8 +7,8 @@ const router = Router();
 
 router.post("/signup", async (req, res) => {
     try {
-      const { name, email, password } = req.body;
-      if (!name || !email || !password) {
+      const { name, email, password, youAre, gender } = req.body;
+      if (!name || !email || !password || ! youAre || !gender) {
         throw new Error("all fields are required");
       }
   
@@ -21,10 +21,10 @@ router.post("/signup", async (req, res) => {
       const hash = bcrypt.hashSync(password, salt);
       
       const newUser = await User.create({
-        name, email, passwordHash: hash,
+        name, email, youAre, gender, passwordHash: hash,
       });
   
-      res.status(201).json({ user: newUser.name, email: newUser.email });
+      res.status(201).json({ user: newUser.name, email: newUser.email, youAre: newUser.youAre, gender: newUser.gender });
     } catch (error) {
       res.status(500).json(error.message);
     }
@@ -44,17 +44,18 @@ router.post("/signup", async (req, res) => {
       
       const payload = {
         id: userFromDB._id,
-        email: userFromDB.email
+        name: userFromDB.name,
+        email,
       }
   
       const token = jwt.sign(payload, process.env.JWT_SECRET, {
-        expiresIn: '1d'
+        expiresIn: '1day'
       });
   
       res.status(200).json({user: payload, token});
   
     } catch (error) {
-      res.status(500).json(error.message)
+      res.status(500).json({message: 'Error trrying to login', error: error.message});
     }
   })
   

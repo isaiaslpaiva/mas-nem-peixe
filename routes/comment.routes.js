@@ -1,6 +1,7 @@
 const { Router } = require('express')
 
 const Comment = require('../models/Comment.models')
+const Product = require('../models/Product.models')
 
 const router = Router()
 

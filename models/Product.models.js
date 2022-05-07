@@ -32,9 +32,9 @@ const productSchema = new Schema (
             trim: true,
             maxlength: 2200,
         },
-        vegan: {
+        itIs: {
             type: String,
-            enum: ["Sim", "Não"],
+            enum: ["Vegano", "Vegetariano", "Origem Animal"],
             required: true
         },
         comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}],
